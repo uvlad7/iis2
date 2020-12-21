@@ -1,3 +1,4 @@
+<% @passenger = TEST_DF.row[rand(0...TEST_DF.size)] %>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
     <div class="row">
@@ -10,41 +11,42 @@
                         <div class="form-group">
                             <label for="class">Class of ticket</label>
                             <select id="class" name="Pclass" class="form-control">
-                                <option selected>1</option>
-                                <option>2</option>
-                                <option>3</option>
+                                <option <%= "selected" if @passenger["Pclass"] == 1 %>>1</option>
+                                <option <%= "selected" if @passenger["Pclass"] == 2 %>>2</option>
+                                <option <%= "selected" if @passenger["Pclass"] == 3 %>>3</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="gender">Gender</label>
                             <select id="gender" name="Sex" class="form-control">
-                                <option selected value=0>M</option>
-                                <option value=1>F</option>
+                                <option <%= "selected" if @passenger["Sex"] == 0 %> value=0>M</option>
+                                <option <%= "selected" if @passenger["Sex"] == 1 %> value=1>F</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="fare">Ticket price</label>
-                            <input type="number" id="Fare" class="form-control" name="Fare" step="0.01" required="true">
-                            </input>
-                            <small> Max was 512</small>
+                            <input type="number" id="Fare" class="form-control" name="Fare" step="0.01" required="true" value=<%= @passenger["Fare"] %>>
+                            <small> Max was <%= FARE_MAX %></small>
 
                         </div>
                         <div class="form-group">
                             <label for="age">Age</label>
-                            <input class="form-control" type="number" name="Age" id="age" required="true">
-                            </input>
-                            <small> Max was 80</small>
+                            <input class="form-control" type="number" name="Age" id="age" required="true" value=<%= @passenger["Age"] %>>
+                            <small> Max was <%= AGE_MAX %></small>
                         </div>
                         <div class="form-group">
                             <label for="sibsp">Number of your siblings/spouses on board</label>
-                            <input type="number" id="sibsp" name="SibSp" class="form-control" required="true">
-                            </input>
+                            <input type="number" id="sibsp" name="SibSp" class="form-control" required="true" value=<%= @passenger["SibSp"] %>>
+                            <small> Max was <%= SIBSP_MAX %></small>
+
                         </div>
                         <div class="form-group">
                             <label for="parch">Number of your parents/children on board</label>
-                            <input type="number" id="parch" name="Parch" class="form-control" required="true">
+                            <input type="number" id="parch" name="Parch" class="form-control" required="true" value=<%= @passenger["Parch"] %>>
                             </input>
+                            <small> Max was <%= PARCH_MAX %></small>
                         </div>
+                        <input type="hidden" id="survived" name="Survived" value=<%= @passenger["Survived"] %>>
                         <button href="#" class="btn btn-primary mx-auto" type="submit" style="display: block">Would you survive?</button>
             </div>
         </div>
